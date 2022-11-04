@@ -10,6 +10,7 @@ def kernel_density(x, h):
                     (math.ceil(x[len(x) - 1]) - math.floor(x[0])) * 100)
     Jt = [J(a, h, x) for a in t]
     plt.plot(t, Jt)
+    plt.show()
 
 
 def J(a, h, x):
@@ -32,35 +33,33 @@ df = pd.read_csv(path)
 
 # Q2
 
-mathGrades = df["math"].tolist()
+# mathGrades = df["math"].tolist()
 # kernel_density(mathGrades, 2)
 # kernel_density(mathGrades, 5)
 # # kernel_density(mathGrades, 7)
-kernel_density(mathGrades, 10)
-plt.show()
+# kernel_density(mathGrades, 10)
 # kernel_density(mathGrades, 15)
 # kernel_density(mathGrades, 20)
 # Q4
 
-
+def kernel_density_mult(xlist, h):
+    for x in xlist:
+        x.sort()
+        t = np.linspace(x[0] - h, x[len(x) - 1] + h,
+                        (math.ceil(x[len(x) - 1]) - math.floor(x[0])) * 100)
+        Jt = [J(a, h, x) for a in t]
+        plt.plot(t, Jt)
+    plt.show()
 #
 #
 mathGradesA = df[df["school"] == "A"]["math"].tolist()
 mathGradesB = df[df["school"] == "B"]["math"].tolist()
 mathGradesC = df[df["school"] == "C"]["math"].tolist()
-kernel_density(mathGradesA,10)
-kernel_density(mathGradesA,10)
-kernel_density(mathGradesA,10)
-plt.show()
-
-
+kernel_density_mult([mathGradesA, mathGradesB, mathGradesC], 10)
 #Q5
 gymGrades = df["gym"].tolist()
 kernel_density(gymGrades, 10)
 gymGradesA = df[df["school"] == "A"]["gym"].tolist()
 gymGradesB = df[df["school"] == "B"]["gym"].tolist()
 gymGradesC = df[df["school"] == "C"]["gym"].tolist()
-kernel_density(gymGradesA,10)
-kernel_density(gymGradesA,10)
-kernel_density(gymGradesA,10)
-plt.show()
+kernel_density_mult([gymGradesA, gymGradesB, gymGradesC], 10)
