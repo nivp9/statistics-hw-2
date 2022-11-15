@@ -63,3 +63,17 @@ gymGradesA = df[df["school"] == "A"]["gym"].tolist()
 gymGradesB = df[df["school"] == "B"]["gym"].tolist()
 gymGradesC = df[df["school"] == "C"]["gym"].tolist()
 kernel_density_mult([gymGradesA, gymGradesB, gymGradesC], 10)
+
+
+
+
+
+
+
+
+res =sc.poisson.isf(0.9, 20)
+if sc.poisson.cdf(res,20)<0.1:
+    res--
+print(res)
+
+
